@@ -34,4 +34,4 @@ def lightSwitchStatus4():
     parsed_json = (json.loads(r.text))
     resp = Response(response=r, status=200, mimetype='application/json')
     print (jsonify(parsed_json))
-    return jsonify(parsed_json) #output is fucking glorious as it should be
+    return jsonify(parsed_json) #output is looks perfect as it should
