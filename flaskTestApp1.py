@@ -1,4 +1,9 @@
 #!/usr/bin/python3
+
+#Needed for printing on console
+#from __future__ import print_function # only in python 2.7
+import sys
+
 from flask import Flask
 from flask import Response
 from flask import jsonify
@@ -7,6 +12,8 @@ app.debug=True
 import random
 import requests
 import json
+import collections
+from collections import OrderedDict
 
 @app.route("/")
 def hello():
@@ -34,4 +41,24 @@ def lightSwitchStatus4():
     parsed_json = (json.loads(r.text))
     resp = Response(response=r, status=200, mimetype='application/json')
     print (jsonify(parsed_json))
-    return jsonify(parsed_json) #output is looks perfect as it should
+    return jsonify(parsed_json) #output is fucking glorious as it should be
+
+@app.route("/btcCurrentToHuf")
+def btcCurrentToHuf():
+    r = requests.get('https://api.coinbase.com/v2/prices/spot?currency=HUF')
+    parsed_json = (json.loads(r.text, object_pairs_hook=collections.OrderedDict))
+    resp = Response(response=r, status=200, mimetype='application/json')
+    print (jsonify(parsed_json))
+    print((str(round((float(parsed_json['data']['amount'])*0.35508934)))), file=sys.stderr) #to also print it on console
+    #getting data.amount value, multiply by the fraction I posess, convert to float, round it to whole, convert to string
+    return(str(round((float(parsed_json['data']['amount'])*0.35508934)))) 
+    #return jsonify(parsed_json) #output is fucking glorious as it should be
+
+@app.route("/btc1ToHuf")
+def btc1ToHuf():
+    r = requests.get('https://api.coinbase.com/v2/prices/spot?currency=HUF')
+    parsed_json = (json.loads(r.text, object_pairs_hook=collections.OrderedDict))
+    resp = Response(response=r, status=200, mimetype='application/json')
+    #print (jsonify(parsed_json))
+    return(str(round((float(parsed_json['data']['amount'])))))
+    #return jsonify(parsed_json) #output is fucking glorious as it should be
