@@ -14,9 +14,17 @@ import requests
 import json
 import collections
 from collections import OrderedDict
+import logging
+
+LOG_FILENAME = '/mnt/e/Google Drive/docs/linux/scripts/git/flaskApp/flaskTestApp.log'
+#file mode "a" for append, "w" for write
+logging.basicConfig(format='%(asctime)s: %(levelname)s - %(message)s', filename=LOG_FILENAME, filemode='a',level=logging.INFO) 
+requests_log = logging.getLogger("requests.packages.urllib3")
 
 @app.route("/")
 def hello():
+    #app.logger.info("Hello world logged")
+    #logging.info("This is an info message") 
     return "Hello world\n"
 
 @app.route("/random")
