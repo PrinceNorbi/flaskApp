@@ -16,13 +16,14 @@ import collections
 from collections import OrderedDict
 import logging
 import os.path
+from flask import render_template
 
 if os.path.exists('/mnt/e/Google Drive/docs/linux/scripts/git/flaskApp/flaskTestApp.log'):
     LOG_FILENAME = '/mnt/e/Google Drive/docs/linux/scripts/git/flaskApp/flaskTestApp.log'
 elif os.path.exists('/home/pi/git/flaskApp/flaskTestApp.log'):
     LOG_FILENAME = '/home/pi/git/flaskApp/flaskTestApp.log'
 else:
-    print("log file doesn't exist")
+    logging.error("Logfile is missing")
 
 #file mode "a" for append, "w" for write
 logging.basicConfig(format='%(asctime)s: %(levelname)s - %(message)s', filename=LOG_FILENAME, filemode='a',level=logging.INFO) 
@@ -30,15 +31,19 @@ logging.basicConfig(format='%(asctime)s: %(levelname)s - %(message)s', filename=
 import os 
 from flask import send_from_directory     
 
-@app.route('/favicon.ico') 
-def favicon(): 
-    return send_from_directory(os.path.join(app.root_path, 'static'), 'favicon.ico', mimetype='image/vnd.microsoft.icon')
-    
 @app.route("/")
 def hello():
     #app.logger.info("Hello world logged")
     #logging.info("This is an info message") 
     return "Hello world\n"
+
+@app.route("/favicon")
+def renderHTML():
+    return render_template('index.html')
+
+@app.route('/favicon.ico') #returning a file, works, however favicon is not visible
+def favicon(): 
+    return send_from_directory(os.path.join(app.root_path, 'static'), 'favicon.ico', mimetype='image/vnd.microsoft.icon')
 
 @app.route("/random")
 def randomGen():
