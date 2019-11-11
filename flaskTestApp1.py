@@ -26,8 +26,14 @@ else:
 
 #file mode "a" for append, "w" for write
 logging.basicConfig(format='%(asctime)s: %(levelname)s - %(message)s', filename=LOG_FILENAME, filemode='a',level=logging.INFO) 
-requests_log = logging.getLogger("requests.packages.urllib3")
 
+import os 
+from flask import send_from_directory     
+
+@app.route('/favicon.ico') 
+def favicon(): 
+    return send_from_directory(os.path.join(app.root_path, 'static'), 'favicon.ico', mimetype='image/vnd.microsoft.icon')
+    
 @app.route("/")
 def hello():
     #app.logger.info("Hello world logged")
