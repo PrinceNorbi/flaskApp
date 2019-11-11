@@ -15,6 +15,15 @@ import json
 import collections
 from collections import OrderedDict
 import logging
+import os.path
+
+if os.path.exists('/mnt/e/Google Drive/docs/linux/scripts/git/flaskApp/flaskTestApp.log'):
+    LOG_FILENAME = '/mnt/e/Google Drive/docs/linux/scripts/git/flaskApp/flaskTestApp.log'
+elif os.path.exists('/home/pi/git/flaskApp/flaskTestApp.log'):
+    LOG_FILENAME = '/home/pi/git/flaskApp/flaskTestApp.log'
+else:
+    print("log file doesn't exist")
+
 
 LOG_FILENAME = '/mnt/e/Google Drive/docs/linux/scripts/git/flaskApp/flaskTestApp.log'
 #file mode "a" for append, "w" for write
