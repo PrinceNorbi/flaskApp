@@ -24,8 +24,6 @@ elif os.path.exists('/home/pi/git/flaskApp/flaskTestApp.log'):
 else:
     print("log file doesn't exist")
 
-
-LOG_FILENAME = '/mnt/e/Google Drive/docs/linux/scripts/git/flaskApp/flaskTestApp.log'
 #file mode "a" for append, "w" for write
 logging.basicConfig(format='%(asctime)s: %(levelname)s - %(message)s', filename=LOG_FILENAME, filemode='a',level=logging.INFO) 
 requests_log = logging.getLogger("requests.packages.urllib3")
