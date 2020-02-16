@@ -18,6 +18,11 @@ import logging
 import os.path
 from flask import render_template
 
+#from OpenSSL import SSL
+#context = SSL.Context(SSL.PROTOCOL_TLSv1_2)
+#context.use_privatekey_file('/etc/letsencrypt/live/ad-astra.hu/privkey.pem')
+#context.use_certificate_file('/etc/letsencrypt/live/ad-astra.hu/fullchain.pem')
+
 if os.path.exists('/mnt/e/Google Drive/docs/linux/scripts/git/flaskApp/flaskTestApp.log'):
     LOG_FILENAME = '/mnt/e/Google Drive/docs/linux/scripts/git/flaskApp/flaskTestApp.log'
 elif os.path.exists('/home/pi/git/flaskApp/flaskTestApp.log'):
