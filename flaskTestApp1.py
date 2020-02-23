@@ -93,3 +93,7 @@ def btc1ToHuf():
     #print (jsonify(parsed_json))
     return(str(round((float(parsed_json['data']['amount'])))))
     #return jsonify(parsed_json) #output is fucking glorious as it should be
+
+@app.route("/daysUntilNice")
+def daysUntilNice():
+    return render_template("countdown.html")
