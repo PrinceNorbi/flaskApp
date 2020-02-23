@@ -3,15 +3,29 @@
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
+body {
+  background-image:url('https://images.alphacoders.com/102/thumb-1920-102083.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: 100% 100%;
+  }
+h1{
+  color:white;
+  font-size: 40px;
+  text-align:center;
+  text-shadow: 3px 2px black;
+  }
 p {
+  color:white;
   text-align: center;
   font-size: 60px;
   margin-top: 0px;
+  text-shadow: 3px 2px black;
 }
 </style>
 </head>
 <body>
-
+<h1>Time left to go:</h1>
 <p id="countdown"></p>
 
 <script>
@@ -44,6 +58,7 @@ var x = setInterval(function() {
   }
 }, 1000);
 </script>
+
 
 </body>
 </html>
