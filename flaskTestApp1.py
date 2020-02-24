@@ -33,21 +33,25 @@ else:
 #file mode "a" for append, "w" for write
 logging.basicConfig(format='%(asctime)s: %(levelname)s - %(message)s', filename=LOG_FILENAME, filemode='a',level=logging.INFO) 
 
-import os 
-from flask import send_from_directory     
+import os
+from flask import send_from_directory
 
 @app.route("/")
 def hello():
     #app.logger.info("Hello world logged")
-    #logging.info("This is an info message") 
-    return "Hello world\n"
+    #logging.info("This is an info message")
+    return render_template("menu.html")
 
-@app.route("/favicon")
-def renderHTML():
-    return render_template('index.html')
+#@app.route("/") #tried running bash command for dynamic menu items, problem with finding cat
+#def hello():
+#    bashCommand = '"/bin/cat flaskTestApp1.py | grep "^@app.route(\"/" | sed s/@app.route\(\"// | sed s/\"\)//"'
+#    import subprocess
+#    process = subprocess.Popen(bashCommand.split(), stdout=subprocess.PIPE)
+#    output, error = process.communicate()
+#    return "$output"
 
-@app.route('/favicon.ico') #returning a file, works, however favicon is not visible
-def favicon(): 
+@app.route("/favicon.ico")
+def favicon():
     return send_from_directory(os.path.join(app.root_path, 'static'), 'favicon.ico', mimetype='image/vnd.microsoft.icon')
 
 @app.route("/random")
